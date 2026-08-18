@@ -64,7 +64,7 @@ Agrega un objeto a `projects` en `data/projects.ts` con al menos `slug`, `title`
 `category`, `categoryLabel` y `shortDescription`. La página `/proyectos/[slug]` se genera
 sola, y el caso de estudio numera únicamente las secciones que tengan contenido:
 contexto, reto, objetivo, rol, proceso, solución, decisiones de diseño, herramientas,
-resultados, evidencias, reflexión y enlaces.
+resultados, reflexión y enlaces.
 
 ### Añadir el video de una charla
 

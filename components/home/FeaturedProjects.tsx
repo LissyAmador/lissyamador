@@ -14,7 +14,7 @@ export default function FeaturedProjects() {
             labelTone="moss"
             label="Proyectos destacados"
             title="Casos de estudio: del problema al resultado"
-            description="Cada proyecto abre una página propia con contexto, reto, rol, proceso, solución y evidencias."
+            description="Cada proyecto abre una página propia con contexto, reto, rol, proceso y solución."
           />
           <Button href="/proyectos" variant="secondary" className="shrink-0">
             Ver todos los proyectos

@@ -19,6 +19,7 @@ export default function PageHeader({
   description,
   tone = "moss",
   action,
+  compact = false,
 }: {
   label?: string;
   title: string;
@@ -26,6 +27,8 @@ export default function PageHeader({
   tone?: keyof typeof labelTones;
   /** Acción secundaria alineada a la derecha, como descargar el CV. */
   action?: ReactNode;
+  /** Reduce el padding inferior para no sumarlo al de la sección siguiente. */
+  compact?: boolean;
 }) {
   return (
     <header className="relative overflow-hidden border-b border-hairline bg-cream">
@@ -37,7 +40,9 @@ export default function PageHeader({
         aria-hidden
         className={`pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full blur-3xl ${glows[tone]}`}
       />
-      <Container className="relative py-16 md:py-24">
+      <Container
+        className={`relative pt-16 md:pt-24 ${compact ? "pb-12 md:pb-16" : "pb-16 md:pb-24"}`}
+      >
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-12">
           <div>
             {label ? (

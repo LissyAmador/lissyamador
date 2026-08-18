@@ -22,7 +22,7 @@ export default function Hero() {
 
       <Container className="relative pb-16 pt-8 md:pb-20 md:pt-10 lg:pb-24 lg:pt-12">
         <div className="grid items-center gap-12 lg:grid-cols-[260px_1fr] lg:gap-14">
-          <div className="mx-auto w-full max-w-[220px] sm:max-w-[240px] lg:mx-0 lg:max-w-none">
+          <div className="mx-auto w-full max-w-[220px] self-center sm:max-w-[240px] lg:max-w-none">
             <PhotoFrame
               src={site.photo}
               alt="Retrato profesional de Lissy Amador"
@@ -32,7 +32,7 @@ export default function Hero() {
             />
           </div>
 
-          <div>
+          <div className="flex flex-col items-center text-center">
             <p className="flex w-fit items-center gap-2.5 rounded-[20px] border border-mustard/45 bg-mustard-soft px-4 py-1.5">
               <span
                 aria-hidden
@@ -64,7 +64,7 @@ export default function Hero() {
               creación de experiencias de aprendizaje.
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
               <Button href="/proyectos" size="lg">
                 Explorar proyectos
               </Button>
@@ -75,7 +75,7 @@ export default function Hero() {
 
             <SocialLinks
               label="Conecta"
-              className="mt-8 border-t border-hairline pt-7"
+              className="mt-8 justify-center border-t border-hairline pt-7"
             />
           </div>
         </div>

@@ -17,10 +17,11 @@ export default function Timeline({ items }: { items: Experience[] }) {
   }
 
   return (
-    <ol className="relative space-y-5 border-l border-hairline pl-6 md:pl-10">
+    <ol className="relative space-y-5 border-l-2 border-navy/25 pl-6 md:pl-10">
       {visible.map((item, index) => {
         const role = text(item.role) as string;
         const organization = text(item.organization);
+        const organizations = list(item.organizations);
         const focus = list(item.focus);
         const responsibilities = list(item.responsibilities);
         const achievements = list(item.achievements);
@@ -52,13 +53,43 @@ export default function Timeline({ items }: { items: Experience[] }) {
                   </p>
                 ) : null}
 
+                {organizations ? (
+                  <div className="mt-4">
+                    <p className="label text-moss-dark">Instituciones</p>
+                    <ul className="mt-2.5 space-y-1.5">
+                      {organizations.map((entity) => (
+                        <li
+                          key={entity}
+                          className="flex gap-2.5 font-body text-sm text-navy/80"
+                        >
+                          <span
+                            aria-hidden
+                            className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-navy"
+                          />
+                          {entity}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+
                 {focus ? (
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {focus.map((tag) => (
-                      <Tag key={tag} tone={item.highlight ? "moss" : "outline"}>
-                        {tag}
-                      </Tag>
-                    ))}
+                  <div className="mt-4">
+                    {organizations ? (
+                      <p className="label text-moss-dark">Áreas</p>
+                    ) : null}
+                    <div
+                      className={`flex flex-wrap gap-2 ${organizations ? "mt-2.5" : ""}`}
+                    >
+                      {focus.map((tag) => (
+                        <Tag
+                          key={tag}
+                          tone={item.highlight ? "moss" : "outline"}
+                        >
+                          {tag}
+                        </Tag>
+                      ))}
+                    </div>
                   </div>
                 ) : null}
 

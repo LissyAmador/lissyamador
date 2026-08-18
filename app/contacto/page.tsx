@@ -19,21 +19,21 @@ const options = [
   {
     title: "Oportunidades profesionales",
     description:
-      "Project management, coordinación de proyectos e innovación, diseño instruccional y gestión de programas.",
+      "Si buscas a alguien para coordinar un proyecto o sumarse a tu equipo, empecemos por una conversación.",
     icon: Briefcase,
     chip: "border border-orange/35 bg-orange-tint text-orange-dark",
   },
   {
     title: "Proyectos y colaboraciones",
     description:
-      "Diseño y desarrollo de experiencias de aprendizaje, soluciones tecnológicas y proyectos conjuntos.",
+      "¿Tienes una idea de aprendizaje o un proyecto conjunto? Me encantaría conocerla y ver cómo puedo aportar.",
     icon: Handshake,
     chip: "border border-moss/30 bg-moss-tint text-moss-dark",
   },
   {
     title: "Conferencias",
     description:
-      "Charlas y talleres sobre tecnología, inteligencia artificial, innovación educativa y creatividad.",
+      "Charlas y talleres sobre tecnología, IA e innovación educativa. Lo armamos según tu audiencia.",
     icon: Mic,
     chip: "border border-mustard/40 bg-mustard-tint text-mustard-dark",
   },
@@ -44,8 +44,8 @@ export default function ContactPage() {
     <>
       <PageHeader
         label="Contacto"
-        title="¿Trabajamos juntos?"
-        description="Estoy interesada en colaborar en proyectos relacionados con tecnología, innovación, diseño instruccional y gestión de iniciativas."
+        title="¿Hablamos?"
+        description="Escríbeme con lo que tienes en mente: un proyecto, una vacante o una charla. Respondo a todos los mensajes."
       />
 
       <section className="border-b border-hairline bg-canvas py-14 md:py-20">
@@ -53,11 +53,11 @@ export default function ContactPage() {
           <div className="grid gap-5 md:grid-cols-3">
             {options.map((option, index) => (
               <Reveal key={option.title} delay={index * 0.08} className="h-full">
-                <article className="h-full rounded-2xl border border-hairline bg-cream p-6">
+                <article className="h-full rounded-2xl border border-hairline bg-cream p-7">
                   <span
-                    className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${option.chip}`}
+                    className={`inline-flex h-16 w-16 items-center justify-center rounded-2xl ${option.chip}`}
                   >
-                    <option.icon aria-hidden className="h-5 w-5" />
+                    <option.icon aria-hidden className="h-8 w-8" strokeWidth={1.75} />
                   </span>
                   <h2 className="mt-5 font-display text-lg font-semibold tracking-tight text-navy">
                     {option.title}

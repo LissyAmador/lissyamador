@@ -21,21 +21,65 @@ export const projects: Project[] = [
     category: ["Diseño instruccional"],
     categoryLabel: "Diseño instruccional / Experiencia de aprendizaje",
     shortDescription:
-      "Proyecto de diseño de una experiencia de aprendizaje digital.",
+      "Modelo de gestión y transferencia del conocimiento que convierte la experiencia de los expertos en aprendizaje organizacional.",
     featured: true,
-    role: [TBD],
-    organization: TBD,
-    context: TBD,
-    audience: TBD,
-    challenge: TBD,
-    objective: TBD,
-    solution: TBD,
-    deliverables: [TBD],
-    tools: [TBD],
-    results: [TBD],
-    learnings: TBD,
-    improvements: TBD,
-    links: [{ label: "Ver experiencia", url: "" }],
+    tags: ["Diseño instruccional", "Experiencia de aprendizaje"],
+    role: ["Diseñadora instruccional"],
+    roleDescription:
+      "Mi función no es ser la experta técnica de cada área, sino el puente entre el experto del negocio, el diseño instruccional, el proveedor o desarrollador y el colaborador. Converso con ingenieros, líderes y expertos para comprender qué necesitan saber y hacer las personas, estructuro ese conocimiento pedagógicamente y lo convierto en una solución de aprendizaje que un proveedor externo puede desarrollar y publicar en la plataforma.",
+    audience:
+      "Colaboradores de la organización, líderes de área y expertos de negocio.",
+    context:
+      "La organización cuenta con conocimiento valioso distribuido entre diferentes áreas y colaboradores. Parte de ese conocimiento puede estar en documentos y sistemas, pero otra parte permanece en la experiencia de los expertos.",
+    challenge:
+      "El principal reto es evitar que el conocimiento crítico dependa exclusivamente de determinadas personas. También existe el desafío de identificar qué conocimiento es realmente prioritario, capturarlo y convertirlo en aprendizaje útil para otros colaboradores.",
+    objective:
+      "Transformar el conocimiento individual en conocimiento organizacional, de manera que pueda ser documentado, transferido, actualizado y utilizado para desarrollar las competencias de los colaboradores.",
+    process: [
+      {
+        name: "A — Análisis",
+        description:
+          "Comprender el negocio, las áreas, puestos, procesos, brechas y conocimiento crítico.",
+      },
+      {
+        name: "D — Diseño",
+        description:
+          "Definir objetivos de aprendizaje, estructura, malla curricular, metodología y modalidades.",
+      },
+      {
+        name: "D — Desarrollo",
+        description:
+          "Convertir el diseño instruccional en cursos, materiales, recursos y actividades, en coordinación con los proveedores.",
+      },
+      {
+        name: "I — Implementación",
+        description:
+          "Publicar los contenidos en la plataforma, desplegar las rutas y acompañar a los colaboradores.",
+      },
+      {
+        name: "E — Evaluación",
+        description:
+          "Medir aprendizaje, transferencia al puesto e impacto en el negocio para mejorar continuamente.",
+      },
+    ],
+    solution:
+      "La Academia del Conocimiento no es simplemente una plataforma de cursos. Es un modelo de gestión y transferencia del conocimiento apoyado por soluciones de aprendizaje. El ciclo recorre identificar, priorizar, capturar, diseñar, transferir, evaluar y actualizar, de modo que el saber de los expertos se vuelva utilizable para toda la organización.",
+    methodologies: ["ADDIE"],
+    pillars: [
+      "Identificar",
+      "Priorizar",
+      "Capturar",
+      "Diseñar",
+      "Transferir",
+      "Evaluar",
+      "Actualizar",
+    ],
+    links: [
+      {
+        label: "Ver experiencia",
+        url: "https://academia-del-conocimiento-6jgf2mid6.vercel.app/",
+      },
+    ],
   },
 
   {
@@ -46,7 +90,8 @@ export const projects: Project[] = [
     shortDescription:
       "Curso-taller autogestionado que da a docentes de preescolar herramientas prácticas para integrar ciencia, tecnología, ingeniería, naturaleza, arte y matemática en la primera infancia.",
     featured: true,
-    role: ["Instructional Designer"],
+    tags: ["Diseño instruccional", "Formación docente"],
+    role: ["Diseñadora instruccional"],
     context:
       "Curso-taller dirigido a docentes de preescolar, publicado como una experiencia autogestionada que recorre las seis áreas STENAM: ciencia, tecnología, ingeniería, naturaleza, arte y matemática.",
     audience: "Docentes de preescolar y primera infancia.",
@@ -125,7 +170,12 @@ export const projects: Project[] = [
     results: [TBD],
     learnings: TBD,
     improvements: TBD,
-    links: [{ label: "Explorar experiencia", url: "" }],
+    links: [
+      {
+        label: "Explorar experiencia",
+        url: "https://stenam-pre-escolar.vercel.app/",
+      },
+    ],
   },
 
   {
@@ -176,7 +226,12 @@ export const projects: Project[] = [
     results: [TBD],
     learnings: TBD,
     improvements: TBD,
-    links: [{ label: "Explorar NovaTech", url: "" }],
+    links: [
+      {
+        label: "Explorar NovaTech",
+        url: "https://elearning-seven-blue.vercel.app/",
+      },
+    ],
   },
 
   {
@@ -187,6 +242,7 @@ export const projects: Project[] = [
     shortDescription:
       "Caso profesional de diseño y desarrollo de una solución para una empresa del sector de ingeniería.",
     featured: true,
+    tags: ["Diseño instruccional", "Colaboraciones"],
     role: [TBD],
     context: TBD,
     audience: TBD,
@@ -207,7 +263,8 @@ export const projects: Project[] = [
     categoryLabel: "Proyecto propio / Educación & tecnología",
     shortDescription:
       "Proyecto propio creado por Lissy Amador en el cruce entre educación y tecnología.",
-    role: ["Founder"],
+    tags: ["Educación & STEM", "Proyecto propio"],
+    role: ["Fundadora"],
     context: TBD,
     audience: TBD,
     challenge: TBD,
@@ -237,6 +294,6 @@ export function projectSummaries(): ProjectSummary[] {
     shortDescription: project.shortDescription,
     image: project.image,
     comingSoon: project.comingSoon,
-    tags: list(project.tags ?? project.role),
+    tags: list(project.tags),
   }));
 }

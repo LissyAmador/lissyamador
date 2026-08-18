@@ -25,7 +25,7 @@ export const socials = [
   {
     id: "facebook",
     label: "Facebook",
-    url: "",
+    url: "https://www.facebook.com/lissy.amadorsazo.3",
   },
   {
     id: "instagram",

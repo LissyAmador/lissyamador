@@ -11,16 +11,18 @@ import { skillGroups } from "@/data/skills";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Sobre Lissy",
+  title: "Sobre mí",
   description:
-    "Lissy Amador, profesional en tecnología educativa y formación digital con más de 10 años impartiendo clases de tecnología, diseño instruccional y coordinación de proyectos.",
+    "Lissy Amador, profesional en tecnología educativa, diseño instruccional e innovación, con más de 10 años de experiencia en tecnología y formación.",
   alternates: { canonical: "/sobre-mi" },
 };
 
 const paragraphs = [
-  "Soy Lissy Amador, profesional en tecnología educativa y formación digital con más de 10 años impartiendo clases de tecnología. Mi camino empezó en programación y telecomunicaciones, y fue evolucionando hacia la docencia, el diseño instruccional y la coordinación de proyectos tecnológicos en instituciones educativas y empresariales.",
-  "He liderado el diseño de currículos y rutas de aprendizaje implementados en programas dirigidos a más de 200 estudiantes y docentes, coordinado equipos de instructores en programación, robótica e impresión 3D, y organizado más de ocho talleres y eventos tecnológicos enfocados en fortalecer habilidades digitales. También he gestionado la infraestructura técnica detrás del aprendizaje: redes, plataformas LMS y laboratorios de tecnología.",
-  "Creo que la tecnología solo transforma cuando va acompañada de buena pedagogía. Por eso mi trabajo combina gestión de proyectos, diseño instruccional e innovación, siempre con el objetivo de llevar una idea desde el aula hasta la implementación real.",
+  "Soy Lissy Amador, profesional en tecnología educativa, diseño instruccional e innovación, con más de 10 años de experiencia trabajando en tecnología y formación. Mi trayectoria comenzó en áreas de programación y telecomunicaciones y evolucionó hacia el diseño de experiencias de aprendizaje, la coordinación de equipos y el desarrollo de proyectos tecnológicos y educativos.",
+  "He liderado el diseño de currículos y rutas de aprendizaje implementados en programas dirigidos a más de 200 estudiantes y docentes, coordinado equipos de instructores en programación, robótica e impresión 3D, y organizado talleres y eventos orientados al desarrollo de habilidades digitales. También he participado en la gestión de infraestructura tecnológica, plataformas LMS y laboratorios de tecnología.",
+  "Uso la tecnología como herramienta para la educación, creando experiencias que facilitan el aprendizaje y la apropiación de habilidades digitales. Actualmente, también me estoy desarrollando en el área de desarrollo de software, fortaleciendo mis competencias técnicas para ampliar el alcance de los proyectos en los que participo.",
+  "Mi experiencia combina gestión de proyectos, diseño instruccional, tecnología y educación, permitiéndome conectar las necesidades de las personas con soluciones concretas y llevar una idea desde su conceptualización hasta su implementación.",
+  "Creo que la tecnología solo transforma cuando va acompañada de una buena estrategia y una experiencia diseñada para las personas.",
 ];
 
 const metrics = [
@@ -56,21 +58,17 @@ export default function AboutPage() {
           className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-moss/25 blur-3xl"
         />
 
-        <Container className="relative py-9 md:py-11">
+        <Container className="relative pb-10 pt-7 md:pb-12 md:pt-8">
           <p className="inline-flex items-center gap-2.5 rounded-full border border-mustard/40 bg-mustard/10 px-4 py-1.5">
             <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-mustard" />
             <span className="label text-mustard">
               Innovación · Tecnología · Educación
             </span>
           </p>
-
-          <h1 className="mt-4 font-display text-[1.375rem] font-semibold tracking-tight text-cream md:text-2xl">
-            Sobre Lissy
-          </h1>
         </Container>
       </section>
 
-      <section className="relative overflow-hidden border-b border-hairline bg-cream">
+      <section className="relative z-10 -mt-6 overflow-hidden border-b border-hairline bg-cream">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-grid-light opacity-70"
@@ -80,30 +78,43 @@ export default function AboutPage() {
           className="pointer-events-none absolute -right-24 top-10 h-72 w-72 rounded-full bg-moss-tint blur-3xl"
         />
 
-        <Container className="relative py-16 md:py-20">
+        <Container className="relative pb-16 pt-8 md:pb-20 md:pt-10">
+          <h1 className="sr-only">Sobre mí</h1>
           <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:gap-10">
-            <figure className="shrink-0">
-              <div className="relative aspect-[4/5] w-[120px] overflow-hidden rounded-2xl border border-hairline bg-navy shadow-card sm:w-[150px]">
-                <Image
-                  src={site.photo}
-                  alt="Retrato profesional de Lissy Amador"
-                  fill
-                  sizes="150px"
-                  priority
-                  className="object-cover"
+            <figure className="relative shrink-0">
+              <div className="relative">
+                <div
+                  aria-hidden
+                  className="absolute -left-3 -top-3 h-14 w-14 rounded-br-[1.25rem] border-l-2 border-t-2 border-mustard"
                 />
+                <div
+                  aria-hidden
+                  className="absolute -bottom-3 -right-3 h-14 w-14 rounded-tl-[1.25rem] border-b-2 border-r-2 border-orange"
+                />
+                <div className="relative aspect-[4/5] w-[120px] overflow-hidden rounded-2xl border border-hairline bg-navy shadow-card sm:w-[150px]">
+                  <Image
+                    src={site.photo}
+                    alt="Retrato profesional de Lissy Amador"
+                    fill
+                    sizes="150px"
+                    priority
+                    className="object-cover"
+                  />
+                </div>
               </div>
-              <span
-                aria-hidden
-                className="mt-3 block h-1 w-12 rounded-full bg-mustard"
-              />
+              <div aria-hidden className="mt-4 flex h-1 w-16 gap-0.5">
+                <span className="h-full flex-[6] rounded-[2px] bg-navy" />
+                <span className="h-full flex-[3] rounded-[2px] bg-moss" />
+                <span className="h-full flex-1 rounded-[2px] bg-mustard" />
+              </div>
             </figure>
 
             <div className="max-w-prose space-y-5">
               {paragraphs.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="font-body text-base leading-relaxed text-graphite text-pretty"
+                  className="hyphens-auto text-justify font-body text-base leading-relaxed text-graphite"
+                  lang="es"
                 >
                   {paragraph}
                 </p>

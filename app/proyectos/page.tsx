@@ -18,7 +18,6 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         tone="moss"
-        label="Portafolio"
         title="Proyectos"
         description="Una selección de proyectos que reflejan mi experiencia en diseño, tecnología, innovación y colaboración."
       />

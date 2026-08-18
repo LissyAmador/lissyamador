@@ -28,6 +28,8 @@ export type Project = {
   categoryLabel: string;
   year?: string;
   role?: string[];
+  /** Párrafo que explica el rol más allá de las etiquetas. */
+  roleDescription?: string;
   /** Etiquetas de la tarjeta; si falta, se usan los roles. */
   tags?: string[];
   shortDescription: string;
@@ -73,6 +75,8 @@ export type Experience = {
   role: string;
   /** Institución y periodo, tal como se muestra bajo el rol. */
   organization?: string;
+  /** Varias instituciones para un mismo rol, como los colegios de docencia. */
+  organizations?: string[];
   /** Ejes que se destacan visualmente: coordinación, tecnología, proyectos… */
   focus?: string[];
   responsibilities?: string[];

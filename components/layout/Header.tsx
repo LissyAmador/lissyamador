@@ -41,23 +41,25 @@ export default function Header() {
           </Link>
 
           <nav aria-label="Navegación principal" className="hidden md:block">
-            <ul className="flex items-center gap-7">
-              {navigation.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    data-active={isActive(item.href)}
-                    aria-current={isActive(item.href) ? "page" : undefined}
-                    className={`link-underline font-body text-sm transition-colors ${
-                      isActive(item.href)
-                        ? "font-medium text-navy"
-                        : "text-muted hover:text-navy"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+            <ul className="flex items-center gap-2">
+              {navigation.map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={`inline-flex items-center rounded-[16px] px-[14px] py-[7px] font-body text-sm uppercase tracking-[0.5px] transition-colors duration-300 ${
+                        active
+                          ? "bg-navy font-semibold text-cream"
+                          : "font-medium text-muted hover:text-navy"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
@@ -99,22 +101,25 @@ export default function Header() {
           >
             <Container className="py-4">
               <nav aria-label="Navegación principal móvil">
-                <ul className="flex flex-col divide-y divide-hairline">
-                  {navigation.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        aria-current={isActive(item.href) ? "page" : undefined}
-                        className={`block py-3.5 font-body text-base transition-colors ${
-                          isActive(item.href)
-                            ? "font-medium text-orange-dark"
-                            : "text-navy"
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
+                <ul className="flex flex-col gap-1">
+                  {navigation.map((item) => {
+                    const active = isActive(item.href);
+                    return (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          aria-current={active ? "page" : undefined}
+                          className={`inline-flex items-center rounded-[16px] px-[14px] py-[7px] font-body text-sm uppercase tracking-[0.5px] transition-colors duration-300 ${
+                            active
+                              ? "bg-navy font-semibold text-cream"
+                              : "font-medium text-muted"
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    );
+                  })}
                 </ul>
               </nav>
               <Link

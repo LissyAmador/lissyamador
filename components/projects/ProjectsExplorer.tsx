@@ -58,7 +58,7 @@ export default function ProjectsExplorer({
         {active === "Todos" ? "" : ` en ${active}`}
       </p>
 
-      <div className="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-6 grid gap-6 [grid-template-columns:repeat(auto-fill,minmax(280px,1fr))]">
         <AnimatePresence mode="popLayout" initial={false}>
           {visible.map((project, index) => (
             <motion.div

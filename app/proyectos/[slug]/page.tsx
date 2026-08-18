@@ -11,12 +11,11 @@ import PendingNote from "@/components/ui/PendingNote";
 import CaseSection, {
   CaseList,
   CaseText,
+  caseAccentOrder,
 } from "@/components/projects/CaseSection";
 import ProcessFlow from "@/components/projects/ProcessFlow";
-import VideoEmbed from "@/components/media/VideoEmbed";
 import { getProject, projects } from "@/data/projects";
-import { links, list, pendingLinks, showPending, text } from "@/lib/content";
-import { youTubeId } from "@/lib/youtube";
+import { links, list, pendingLinks, text } from "@/lib/content";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -55,6 +54,7 @@ export default async function ProjectPage({
   if (!project) notFound();
 
   const roles = list(project.role);
+  const roleDescription = text(project.roleDescription);
   const organization = text(project.organization);
   const audience = text(project.audience);
   const context = text(project.context);
@@ -69,10 +69,6 @@ export default async function ProjectPage({
   const improvements = text(project.improvements);
   const visibleLinks = links(project.links);
   const missingLinks = pendingLinks(project.links);
-  const videoIds = (project.videos ?? [])
-    .map((video) => youTubeId(video))
-    .filter((id): id is string => Boolean(id));
-  const hasEvidence = Boolean(project.gallery?.length) || videoIds.length > 0;
 
   const sections: { title: string; content: ReactNode }[] = [];
 
@@ -85,18 +81,27 @@ export default async function ProjectPage({
   if (objective) {
     sections.push({ title: "Objetivo", content: <CaseText>{objective}</CaseText> });
   }
-  if (roles) {
+  if (roles || roleDescription) {
     sections.push({
       title: "Mi rol",
       content: (
         <div>
-          <div className="flex flex-wrap gap-2">
-            {roles.map((role) => (
-              <Tag key={role} tone="orange">
-                {role}
-              </Tag>
-            ))}
-          </div>
+          {roles ? (
+            <div className="flex flex-wrap gap-2">
+              {roles.map((role) => (
+                <Tag key={role} tone="orange">
+                  {role}
+                </Tag>
+              ))}
+            </div>
+          ) : null}
+          {roleDescription ? (
+            <p
+              className={`max-w-prose font-body text-base leading-relaxed text-navy/80 text-pretty ${roles ? "mt-5" : ""}`}
+            >
+              {roleDescription}
+            </p>
+          ) : null}
           {audience ? (
             <p className="mt-5 max-w-prose font-body text-base leading-relaxed text-navy/80">
               <span className="font-medium text-navy">Audiencia:</span>{" "}
@@ -219,46 +224,6 @@ export default async function ProjectPage({
       ),
     });
   }
-  if (hasEvidence || showPending) {
-    sections.push({
-      title: "Evidencias",
-      content: (
-        <div className="space-y-6">
-          {project.gallery?.length ? (
-            <div className="grid gap-4 sm:grid-cols-2">
-              {project.gallery.map((item) => (
-                <figure
-                  key={item.src}
-                  className="overflow-hidden rounded-xl border border-hairline bg-canvas"
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="h-auto w-full object-cover"
-                  />
-                </figure>
-              ))}
-            </div>
-          ) : null}
-
-          {videoIds.length ? (
-            <div className="grid gap-6 lg:grid-cols-2">
-              {videoIds.map((id) => (
-                <VideoEmbed key={id} videoId={id} title={project.title} />
-              ))}
-            </div>
-          ) : null}
-
-          {!hasEvidence ? (
-            <PendingNote>
-              capturas, imágenes, videos o documentos del proyecto
-            </PendingNote>
-          ) : null}
-        </div>
-      ),
-    });
-  }
   if (learnings || improvements) {
     sections.push({
       title: "Reflexión profesional",
@@ -294,7 +259,7 @@ export default async function ProjectPage({
       content: (
         <div className="flex flex-wrap gap-3">
           {visibleLinks.map((link) => (
-            <Button key={link.url} href={link.url} variant="secondary">
+            <Button key={link.url} href={link.url} size="lg">
               {link.label}
             </Button>
           ))}
@@ -367,11 +332,21 @@ export default async function ProjectPage({
           ) : null}
 
           {visibleLinks.length ? (
-            <div className="mt-10 flex flex-wrap gap-3">
+            <div className="mt-10">
               {visibleLinks.map((link) => (
-                <Button key={link.url} href={link.url} variant="inverse">
-                  {link.label}
-                </Button>
+                <a
+                  key={link.url}
+                  href={link.url}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="group relative inline-flex items-center gap-2 rounded-full bg-orange px-7 py-3.5 font-display text-sm font-semibold uppercase tracking-[0.08em] text-navy shadow-lift transition-transform duration-300 ease-soft hover:scale-[1.03] hover:bg-orange-hover animate-cta-glow"
+                >
+                  Haz clic aquí para ver
+                  <ArrowRight
+                    aria-hidden
+                    className="h-4 w-4 transition-transform duration-300 ease-soft group-hover:translate-x-1"
+                  />
+                </a>
               ))}
             </div>
           ) : null}
@@ -392,6 +367,7 @@ export default async function ProjectPage({
                 key={section.title}
                 number={String(index + 1).padStart(2, "0")}
                 title={section.title}
+                accent={caseAccentOrder[index % caseAccentOrder.length]}
               >
                 {section.content}
               </CaseSection>
