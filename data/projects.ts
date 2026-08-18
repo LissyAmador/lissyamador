@@ -16,6 +16,106 @@ export const projectCategories: ("Todos" | ProjectCategory)[] = [
  */
 export const projects: Project[] = [
   {
+    slug: "ingenieria-de-prompts",
+    title: "Ingeniería de Prompts en 15 Minutos",
+    category: ["Diseño instruccional", "Educación & STEM"],
+    categoryLabel: "Diseño instruccional / Microlearning",
+    shortDescription:
+      "Mini-curso de microlearning para estudiantes de bachillerato: cómo pedir a la IA de forma estructurada, en unos 15 minutos, con práctica y evaluación.",
+    featured: true,
+    tags: ["Diseño instruccional", "Educación & STEM"],
+    role: ["Diseñadora instruccional", "Directora de producto"],
+    roleDescription:
+      "Actué como diseñadora instruccional y directora de producto de principio a fin: definí la audiencia y el tema, seleccioné y justifiqué el modelo pedagógico, diseñé la arquitectura completa del contenido lección por lección, dirigí el sistema visual y escribí los guiones de video. La construcción técnica se hizo con instrucciones estructuradas en capas (tecnología, sistema de diseño y contenido) en lugar de una sola especificación ambigua: el mismo tipo de brief que le daría a un equipo de desarrollo real.",
+    organization: "Universidad Rafael Landívar · CEAT",
+    audience: "Estudiantes de 5.º bachillerato.",
+    context:
+      "Apliqué a la plaza de Coordinadora del Centro de Enseñanza, Aprendizaje y Tecnología Educativa (CEAT) en la Universidad Rafael Landívar. El puesto exige liderar proyectos de virtualización de asignaturas, diseño instruccional y programas formativos con IA, y no tenía un portafolio que demostrara esas competencias de forma tangible. En lugar de una presentación teórica sobre mi enfoque, construí una pieza de trabajo real: un mini-curso funcional, publicado y evaluable, sobre un tema que conecta con lo que el puesto pide: virtualización e IA aplicada a educación.",
+    challenge:
+      "Tenía menos de 24 horas antes de la entrevista y ningún trabajo previo que mostrar. El reto no era solo producir algo bonito: era demostrar, en un solo artefacto, cinco competencias a la vez: análisis de audiencia, selección justificada de un modelo pedagógico, arquitectura de contenido, diseño visual con identidad propia y ejecución técnica funcional. Cualquier atajo —una plantilla genérica, un PDF estático o una demo sin interactividad— habría delatado relleno para la entrevista, no una muestra de proceso real.",
+    objective:
+      "Diseñar y construir un mini-curso de microlearning, autocontenido en una sola página, dirigido a una audiencia real —estudiantes de 5.º bachillerato— sobre ingeniería de prompts. Debía seguir un modelo pedagógico justificable en una entrevista, incluir práctica activa y evaluación con retroalimentación real, tener identidad visual propia e independiente de cualquier marca institucional, y estar desplegado y accesible por enlace, no solo como archivo local.",
+    process: [
+      {
+        name: "Audiencia y tema",
+        description:
+          "Descarté una versión inicial dirigida a docentes y la reenfoqué hacia estudiantes de bachillerato, priorizando un tema de necesidad inmediata: la mayoría ya usa IA generativa, pero sin estructura.",
+      },
+      {
+        name: "Modelo pedagógico",
+        description:
+          "Evalué el Ciclo de Aprendizaje Experiencial de Kolb frente a modelos más expositivos (Gagné, Merrill) y lo elegí porque una habilidad práctica se aprende haciendo, no memorizando. Lo integré como capa pedagógica dentro de ADDIE.",
+      },
+      {
+        name: "Arquitectura de contenido",
+        description:
+          "Mapeé las cuatro fases de Kolb a seis lecciones concretas, cada una con un propósito pedagógico distinto: desde experimentar con un prompt vago hasta construir uno propio con retroalimentación.",
+      },
+      {
+        name: "Prototipado",
+        description:
+          "Diseñé un constructor de prompts en vivo —el estudiante arma su prompt por partes— y una evaluación de cinco preguntas con retroalimentación escalonada según el puntaje.",
+      },
+      {
+        name: "Iteración",
+        description:
+          "Reestructuré una comparación inicial de dos opciones, con respuesta obvia, a un espectro de cuatro ejemplos, porque una comparación binaria no generaba reflexión real. También decidí mantener la paleta violeta y lima tras comparar alternativas.",
+      },
+      {
+        name: "Producción de video",
+        description:
+          "Escribí guiones para tres microvideos y generé prompts de video con IA, desglosados en clips de cuatro segundos pensados para intercalarse con narración.",
+      },
+      {
+        name: "Construcción y despliegue",
+        description:
+          "Separé las instrucciones técnicas en tres capas —stack tecnológico, sistema visual y contenido lección por lección— y publiqué el resultado en la web.",
+      },
+    ],
+    solution:
+      "Un mini-curso de una sola página, en español, de unos 15 minutos. Incluye barra de progreso y un indicador del Ciclo de Kolb que se ilumina según la fase activa, de modo que la navegación refleja la metodología y no es solo decoración. Seis lecciones cubren experiencia concreta, observación reflexiva, conceptualización abstracta y experimentación activa, más un cierre. El estudiante practica la fórmula RTFC (Rol, Tarea, Formato, Contexto) en un constructor interactivo y cierra con una evaluación de cinco preguntas, retroalimentación inmediata y un mensaje distinto según el puntaje. La identidad visual es propia: violeta y lima, independiente de cualquier marca institucional.",
+    methodologies: ["ADDIE", "Ciclo de Kolb", "Microlearning"],
+    designDecisions: [
+      {
+        title: "Kolb sobre modelos expositivos",
+        description:
+          "Una habilidad práctica se interioriza mejor viviendo la experiencia —incluido el fracaso de un prompt vago— antes de recibir la teoría, y aplicándola de inmediato en un caso propio.",
+      },
+      {
+        title: "Cuatro ejemplos, no dos",
+        description:
+          "Una comparación binaria no genera reflexión real. El espectro de cuatro prompts obliga a ordenar y argumentar, no a adivinar la respuesta correcta.",
+      },
+      {
+        title: "Navegación como pedagogía",
+        description:
+          "El indicador del Ciclo de Kolb se ilumina con la fase activa: el sistema de navegación enseña la metodología, no solo decora la interfaz.",
+      },
+    ],
+    pillars: [
+      "Análisis de audiencia",
+      "Modelo pedagógico",
+      "Arquitectura de contenido",
+      "Práctica activa",
+      "Evaluación con retroalimentación",
+      "Identidad visual",
+    ],
+    deliverables: [
+      "Mini-curso de una sola página, ~15 minutos",
+      "Seis lecciones alineadas al Ciclo de Kolb",
+      "Constructor interactivo de prompts RTFC",
+      "Evaluación final de cinco preguntas con retroalimentación",
+      "Tres microvideos con guion propio",
+    ],
+    links: [
+      {
+        label: "Abrir el mini-curso",
+        url: "https://ingenieria-de-prompt-ecru.vercel.app/",
+      },
+    ],
+  },
+
+  {
     slug: "academia-del-conocimiento",
     title: "Academia del Conocimiento",
     category: ["Diseño instruccional"],
