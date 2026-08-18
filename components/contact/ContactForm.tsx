@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import { Send } from "lucide-react";
-import { site } from "@/data/site";
-import { text } from "@/lib/content";
+import { showPending } from "@/lib/content";
 
 const reasons = [
   "Oportunidad profesional",
@@ -15,50 +14,94 @@ const reasons = [
 const fieldClass =
   "mt-2 w-full rounded-xl border border-hairline bg-cream px-4 py-3 font-body text-sm text-navy transition-colors placeholder:text-muted/70 focus:border-moss focus:outline-none";
 
-export default function ContactForm() {
-  const email = text(site.email);
-  const mailbox = email?.includes("@") ? email : undefined;
+/**
+ * El mensaje viaja a Web3Forms, que lo reenvía al correo asociado a la clave.
+ * La clave es pública por diseño: identifica el buzón de destino, pero no
+ * expone la dirección en el sitio ni permite leer los envíos.
+ */
+const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
 
-  const [form, setForm] = useState({
-    name: "",
-    organization: "",
-    email: "",
-    reason: reasons[0],
-    message: "",
-  });
-  const [sent, setSent] = useState(false);
+const empty = {
+  name: "",
+  organization: "",
+  email: "",
+  reason: reasons[0],
+  message: "",
+};
+
+type Status = "idle" | "sending" | "sent" | "error";
+
+const messages: Record<Status, string> = {
+  idle: "Respondo a todos los mensajes que llegan por este formulario.",
+  sending: "Enviando tu mensaje…",
+  sent: "¡Mensaje enviado! Gracias por escribir, te responderé pronto.",
+  error:
+    "No se pudo enviar el mensaje. Vuelve a intentarlo en un momento o escríbeme por LinkedIn.",
+};
+
+export default function ContactForm() {
+  const [form, setForm] = useState(empty);
+  const [status, setStatus] = useState<Status>("idle");
 
   const update = (field: keyof typeof form) => (value: string) =>
     setForm((current) => ({ ...current, [field]: value }));
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!mailbox) return;
+    if (!accessKey || status === "sending") return;
 
-    const subject = `${form.reason} — ${form.name}`;
-    const body = [
-      `Nombre: ${form.name}`,
-      form.organization ? `Organización: ${form.organization}` : null,
-      `Correo: ${form.email}`,
-      `Motivo: ${form.reason}`,
-      "",
-      form.message,
-    ]
-      .filter(Boolean)
-      .join("\n");
+    setStatus("sending");
 
-    window.location.href = `mailto:${mailbox}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `${form.reason} — ${form.name}`,
+          from_name: "Portafolio de Lissy Amador",
+          // Permite responder directamente a quien escribe.
+          replyto: form.email,
+          Nombre: form.name,
+          Organización: form.organization || "—",
+          Correo: form.email,
+          Motivo: form.reason,
+          Mensaje: form.message,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setForm(empty);
+        setStatus("sent");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   };
+
+  const disabled = !accessKey || status === "sending";
 
   return (
     <form
       onSubmit={handleSubmit}
       className="rounded-2xl border border-hairline bg-cream p-6 md:p-8"
-      noValidate={false}
     >
+      {/* Señuelo antispam: si se rellena, Web3Forms descarta el envío. */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        aria-hidden
+        className="hidden"
+      />
+
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label
@@ -163,19 +206,24 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={!mailbox}
+        disabled={disabled}
         className="mt-7 inline-flex items-center gap-2 rounded-full bg-orange px-6 py-3 font-body text-sm font-medium text-navy transition-colors duration-300 hover:bg-orange-hover disabled:cursor-not-allowed disabled:bg-navy/15 disabled:text-navy/50"
       >
         <Send aria-hidden className="h-4 w-4" />
-        Enviar mensaje
+        {status === "sending" ? "Enviando…" : "Enviar mensaje"}
       </button>
 
-      <p className="mt-4 font-body text-xs leading-relaxed text-muted" aria-live="polite">
-        {!mailbox
-          ? "El formulario se activa en cuanto se configure el correo profesional en data/site.ts."
-          : sent
-            ? "Se abrió tu cliente de correo con el mensaje listo para enviar."
-            : "El mensaje se abrirá en tu cliente de correo con los datos ya completados."}
+      <p
+        className={`mt-4 font-body text-xs leading-relaxed ${
+          status === "error" ? "text-orange-dark" : "text-muted"
+        }`}
+        aria-live="polite"
+      >
+        {accessKey
+          ? messages[status]
+          : showPending
+            ? "Pendiente: definir NEXT_PUBLIC_WEB3FORMS_KEY en .env.local para activar el envío."
+            : "Mientras tanto puedes escribirme por LinkedIn."}
       </p>
     </form>
   );

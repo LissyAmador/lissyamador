@@ -77,6 +77,29 @@ cuando la persona lo pide.
 Guarda las imágenes en `public/` y pasa la ruta al componente `PhotoFrame` (Home y Sobre
 mí). Mientras no exista foto, se muestra una composición geométrica en lugar de un hueco.
 
+## Formulario de contacto
+
+Los mensajes se envían con [Web3Forms](https://web3forms.com), que los reenvía al
+correo asociado a la clave de acceso. No hace falta backend ni base de datos.
+
+1. Entra a [web3forms.com](https://web3forms.com) y registra el correo de destino.
+2. Copia la clave que llega por correo.
+3. En local, pégala en `.env.local`:
+
+```bash
+NEXT_PUBLIC_WEB3FORMS_KEY=tu-clave
+```
+
+4. En Vercel, añade la misma variable en *Settings → Environment Variables* y
+   vuelve a desplegar.
+
+La clave es pública por diseño: identifica el buzón de destino, pero no revela la
+dirección de correo en el sitio ni permite leer los mensajes enviados. Mientras
+no exista clave, el formulario se muestra desactivado con un aviso.
+
+El campo oculto `botcheck` actúa como señuelo antispam: si un bot lo rellena,
+Web3Forms descarta el envío.
+
 ## Sistema de diseño
 
 Paleta 60-30-10: el azul marino domina, el verde musgo acompaña y naranja y
